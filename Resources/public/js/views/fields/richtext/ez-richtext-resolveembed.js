@@ -157,12 +157,30 @@ YUI.add('ez-richtext-resolveembed', function (Y) {
      * @param {Array} results
      */
     ResolveEmbed.prototype._renderEmbed = function (mapNode, error, results) {
+        var localMapNode = Y.merge(mapNode);
+
+        if ( error ) {
+            this._renderNotLoadedEmbed(localMapNode);
+            return;
+        }
+
         results.forEach(function (struct) {
             var content = struct.content;
 
-            mapNode[content.get('contentId')].forEach(function (embedNode) {
+            localMapNode[content.get('contentId')].forEach(function (embedNode) {
                 this._unsetLoading(embedNode);
                 this._getEmbedContent(embedNode).setContent(content.get('name'));
+            }, this);
+            delete localMapNode[content.get('contentId')];
+        }, this);
+        this._renderNotLoadedEmbed(localMapNode);
+    };
+
+    ResolveEmbed.prototype._renderNotLoadedEmbed = function (mapNode) {
+        Object.keys(mapNode).forEach(function (missingContentId) {
+            mapNode[missingContentId].forEach(function (embedNode) {
+                this._unsetLoading(embedNode);
+                this._setNotLoaded(embedNode);
             }, this);
         }, this);
     };
@@ -245,6 +263,18 @@ YUI.add('ez-richtext-resolveembed', function (Y) {
      */
     ResolveEmbed.prototype._unsetLoading = function (embedNode) {
         return embedNode.removeClass('is-embed-loading');
+    };
+
+    /**
+     * Sets the embed node in the not loaded state
+     *
+     * @method _setNotLoaded
+     * @protected
+     * @param {Node} embedNode
+     */
+    ResolveEmbed.prototype._setNotLoaded = function (embedNode) {
+        embedNode.addClass('is-embed-not-loaded');
+        this._getEmbedContent(embedNode).setContent(Y.eZ.trans('embed.not.loaded', {}, 'fieldedit'));
     };
 
     /**
