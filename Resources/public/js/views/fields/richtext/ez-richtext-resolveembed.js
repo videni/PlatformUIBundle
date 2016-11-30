@@ -27,7 +27,7 @@ YUI.add('ez-richtext-resolveembed', function (Y) {
              * @type {String}
              * @protected
              */
-            this._notLoadedMessage = Y.eZ.trans('embed.not.loaded', {}, 'fieldedit');
+            this._notLoadedMessage = "Embedded Content item could not be loaded";
         };
 
     /**

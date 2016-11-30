@@ -128,7 +128,8 @@ YUI.add('ez-richtext-resolveembed-tests', function (Y) {
                 "The not loaded class should have been added"
             );
             Assert.areEqual(
-                "embed.not.loaded domain=fieldedit", embed.one('.ez-embed-content').getContent(),
+                "Embedded Content item could not be loaded",
+                embed.one('.ez-embed-content').getContent(),
                 "The embed should contain an error message"
             );
         },
