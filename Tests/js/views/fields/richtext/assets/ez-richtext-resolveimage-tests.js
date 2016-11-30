@@ -129,7 +129,7 @@ YUI.add('ez-richtext-resolveimage-tests', function (Y) {
                 "The image should get the not loaded class"
             );
             Assert.areEqual(
-                'embed.image.not.loaded domain=fieldedit',
+                'Image could not be loaded',
                 image.one('.ez-embed-content').getContent(),
                 "The image content element should contain an error message"
             );
