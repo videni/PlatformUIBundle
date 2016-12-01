@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
+cd $HOME/build/ezplatform/vendor/ezsystems/platform-ui-bundle
+
 OUTPUT=$(sh ./bin/updatestrings.sh --dry-run)
 ADDED_MESSAGES=$(echo "$OUTPUT" | awk '/Added Messages/ { print $3 }')
 DELETED_MESSAGES=$(echo "$OUTPUT" | awk '/Deleted Messages/ { print $3 }')
