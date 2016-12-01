@@ -97,7 +97,11 @@ YUI.add('ez-richtext-resolveimage-tests', function (Y) {
 
         _getContentMock: function (contentId) {
             var content = new Mock(),
-                attrs = {contentId: contentId, name: "name-" + contentId, fields: this.fields[contentId]};
+                attrs = {
+                    contentId: contentId,
+                    name: "name-" + contentId,
+                    fields: this.fields[contentId]
+                };
 
             Mock.expect(content, {
                 method: 'get',
@@ -108,6 +112,11 @@ YUI.add('ez-richtext-resolveimage-tests', function (Y) {
                     }
                     Assert.fail("Unexpected call to get('" + attr + "')");
                 },
+            });
+            Mock.expect(content, {
+                method: 'getField',
+                args: ['image'],
+                returns: this.fields[contentId].image,
             });
             return content;
         },

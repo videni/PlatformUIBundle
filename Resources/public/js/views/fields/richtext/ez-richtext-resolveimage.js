@@ -84,8 +84,7 @@ YUI.add('ez-richtext-resolveimage', function (Y) {
                 imageField;
 
             imageField = content.getField(
-                contentType.getFieldDefinitionIdentifiers('ezimage')[0],
-                content.get('mainLanguageCode')
+                contentType.getFieldDefinitionIdentifiers('ezimage')[0]
             );
             if ( imageField.fieldValue ) {
                 localMapNode[contentId].forEach(Y.bind(this._loadVariation, this, view, content, imageField));
