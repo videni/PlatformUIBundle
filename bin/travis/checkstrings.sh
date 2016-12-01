@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
-cd $HOME/build/ezplatform/vendor/ezsystems/platform-ui-bundle
+cd $HOME/build/ezplatform
 
-OUTPUT=$(sh ./bin/updatestrings.sh --dry-run)
+OUTPUT=$(docker-compose exec --user www-data app sh -c "cd vendor/ezsystems/platform-ui-bundle; ./bin/updatestrings.sh --dry-run")
 ADDED_MESSAGES=$(echo "$OUTPUT" | awk '/Added Messages/ { print $3 }')
 DELETED_MESSAGES=$(echo "$OUTPUT" | awk '/Deleted Messages/ { print $3 }')
 
