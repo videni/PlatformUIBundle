@@ -4,6 +4,11 @@
  */
 
 
+.ez-view-draftconflictview {
+    overflow: auto;
+    max-height: 30em;
+}
+
 .ez-view-draftconflictview .ez-draft-conflict-title {
     margin: 0.5em 0 0 0;
 }
