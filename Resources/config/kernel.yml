@@ -1,0 +1,8 @@
+system:
+    default:
+        content_view:
+            line:
+                pjax_location_line:
+                    template: "eZPlatformUIBundle:content:line.html.twig"
+                    match:
+                        \EzSystems\PlatformUIBundle\Matcher\ContentBased\Pjax: true
