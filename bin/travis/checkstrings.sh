@@ -1,9 +1,7 @@
 #!/usr/bin/env sh
-# set -x
 
-cd $HOME/build/ezplatform
+OUTPUT=$(./bin/updatestrings.sh --dry-run)
 
-OUTPUT=$(docker-compose exec --user www-data app sh -c "cd vendor/ezsystems/platform-ui-bundle; ./bin/updatestrings.sh --dry-run")
 echo "> Output from updatestrings.sh"
 echo $OUTPUT
 
